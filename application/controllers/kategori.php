@@ -1,13 +1,12 @@
 <?php
-defined('BASEPATH')OR exit('No direct script access allowed');
+defined('BASEPATH') OR exit('No direct script access allowed');
 
-class kategori extends CI_Controller{
+class Kategori extends CI_Controller {
 
     public function __construct()
     {
-        parent ::__construct();
+        parent::__construct();
         $this->load->model('Kategori_model');
-
     }
     public function index()
     {
@@ -21,14 +20,19 @@ class kategori extends CI_Controller{
     }
     public function tambah()
     {
+        $this->load->view('templates/header');
+        $this->load->view('templates/topbar');
+        $this->load->view('templates/sidebar');
         $this->load->view('kategori/tambah');
+        $this->load->view('templates/footer');
     }
     public function simpan()
     {
-        $data= [
-            'nama_kategori'=> $this->input->post('nama_kategori')
+        $data = [
+            'nama_kategori' => $this->input->post('nama_kategori')
         ];
+
         $this->Kategori_model->insert($data);
-        redirect('Kategori');
+        redirect('kategori');
     }
 }
