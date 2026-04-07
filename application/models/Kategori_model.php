@@ -1,14 +1,19 @@
 <?php
-defined('BASEPATH')OR exit('No direct script access allowed');
+defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Kategori_model extends CI_Model{
-    
-    Private $table ='kategori';
+class Kategori_model extends CI_Model {
+
+    private $table = 'kategori';
 
     // Ambil semua data
     public function get_all()
     {
         return $this->db->get($this->table)->result();
+    }
+    public function get_by_id($id)
+    {
+        $this->db->where('id',$id);
+        return $this->db->get('kategori')->row();
     }
     public function insert($data)
     {
@@ -20,6 +25,11 @@ class Kategori_model extends CI_Model{
     }
     public function is_used($id)
     {
-        return $this->db->where('id',$id)->count_all_results('buku')>0;
+        return $this->db->where('kategori_id',$id)->count_all_results('buku')>0;
+    }
+    public function update($id, $data)
+    {
+        $this->db->where('id',$id);
+        return $this->db->update($this->table, $data);
     }
 }

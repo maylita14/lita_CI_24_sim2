@@ -45,4 +45,28 @@ class Kategori extends CI_Controller {
         // }
         redirect('kategori');
     }
+    public function edit($id)
+    {
+        $data['kategori']= $this->Kategori_model->get_by_id($id);
+        $this->load->view('templates/header');
+        $this->load->view('templates/sidebar');
+        $this->load->view('templates/topbar');
+        $this->load->view('kategori/edit', $data);
+        $this->load->view('templates/footer');
+    }
+    public function update($id)
+    {
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('nama_kategori', 'Nama Katgeori', 'required');
+        if($this->form_validation->run()==FALSE){
+
+        }else{
+            $data=[
+                'nama_kategori'=>$this->input->post('nama_kategori')
+            ];
+            $this->Kategori_model->update($id, $data);
+            $this->session->set_flashdata('succes', 'Data berhasil di update');
+            redirect('kategori');
+        }
+    }
 }
