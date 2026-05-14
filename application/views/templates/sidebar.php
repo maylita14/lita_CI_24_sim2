@@ -54,6 +54,20 @@
     </a>
 </li>
 
+<li class="nav-item">
+    <a class="nav-link" href="<?= base_url('laporan/buku') ?>">
+        <i class="fas fa-book"></i>
+        <span>Laporan Buku</span>
+    </a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link" href="<?= base_url('laporan/anggota') ?>">
+        <i class="fas fa-users"></i>
+        <span>Laporan Anggota</span>
+    </a>
+</li>
+
 <hr class="sidebar-divider d-none d-md-block">
 
 </ul>
